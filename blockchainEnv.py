@@ -37,22 +37,27 @@ class BlockchainEnv(gym.Env):
                 self.public_chain_height += 1
         elif action == 1:
             # Adversary resets the private chain to the public chain height
+            reward = -self.private_chain_height - self.public_chain_height - 1
             self.private_chain_height = 0
             self.public_chain_height = 0
-            reward = -0.1
+            if np.random.binomial(1, 0.3) == 1:
+                self.private_chain_height += 1
+            else:
+                self.public_chain_height += 1
             done = False
             observation = np.array([self.public_chain_height, self.private_chain_height])
             return observation, reward, done, {}
         
         
         # Calculate reward
-        reward = -0.1
+        reward = -1
 
         if self.public_chain_height >= 5 and self.private_chain_height >= self.public_chain_height:
-            reward = 100  # Adversary wins
+            reward = 9999999  # Adversary wins
             done = True
         else:
             if self.private_chain_height - self.public_chain_height >= 5:
+                #edge case: the adversary wins already (want to wait until the target block is actually confirmed)
                 reward = 0
             done = False
         
