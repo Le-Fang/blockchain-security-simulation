@@ -2,7 +2,7 @@ import numpy as np
 
 rate = 1
 colors = ['a', 'h']
-probabilities = [1/4, 3/4]
+probabilities = [0.3, 0.7]
 
 inter_arrival_times = np.random.exponential(scale=1/rate, size=5000)
 

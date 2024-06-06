@@ -14,6 +14,8 @@ testing_qlearner.py: this is a file to evaluate the learned policy. It reads fro
 
 simple_reset_simulation.py: this file contains a simulation of a simple reset policy (reset whenever the public chain is longer than the private chain).
 
+random_walk_simulation.py: this file contains a simulation of a random walk.
+
 ## How to use:
 
 By running simple_reset_simulation.py, it simply prints out the average number of blocks mined before the first violation occurs.
